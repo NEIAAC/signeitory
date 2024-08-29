@@ -24,7 +24,7 @@ We use [PyMu](https://github.com/pymupdf/PyMuPDF) under the hood for the massive
 
 - Create a `.env` file based on the provided `.env.example` file, with attention to the notes on each variable
 
-- Edit the `table.csv` file in the data folder, or add your own, with a column containing the text you want to write on each file
+- Edit the `table.csv` file in the `data` folder, or add your own, with a single column containing the text you want to write on each file
 
 - Change text, font, color and placement:
 

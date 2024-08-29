@@ -1,9 +1,10 @@
 import os
 import logging
-import copy
 import dotenv
 import pandas as pd
 import pymupdf
+
+CONVERTED_EXTENSION = "pdf"
 
 def get_env(var_name: str) -> str:
     value = os.getenv(var_name)
@@ -26,13 +27,9 @@ def read_table(table_path: str) -> list[list[str]]:
     return table.values.tolist()
 
 def read_file_data(file_path: str) -> bytes:
-    try:
-        file = pymupdf.open(file_path)
-        file_data = file.convert_to_pdf()
-        return file_data
-    except Exception as e:
-        logging.critical(f"Failed to open file: {e}")
-        exit(1)
+    file = pymupdf.open(file_path)
+    file_data = file.convert_to_pdf()
+    return file_data
 
 def main():
     logging.basicConfig(
@@ -56,15 +53,19 @@ def main():
 
     logging.info(f"Loaded environment variables")
 
-    CONVERTED_EXTENSION = "pdf"
+    try:
+        file_data = read_file_data(file_path)
+        logging.info(f"Writeable file loaded")
+    except Exception as e:
+        logging.critical(f"Failed to open file: {e}")
+        exit(1)
 
-    table = read_table(table_path)
-
-    logging.info(f"Loaded table data")
-
-    file_data = read_file_data(file_path)
-
-    logging.info(f"Loaded base file")
+    try:
+        table = read_table(table_path)
+        logging.info(f"Table loaded, found {len(table)} {len(table) == 1 and 'row' or 'rows'}")
+    except Exception as e:
+        logging.critical(f"Failed to load table: {e}")
+        exit(1)
 
     total: int = 0
     successful: int = 0
