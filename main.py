@@ -85,20 +85,23 @@ def main():
         color = (0.2, 0.5, 0.7)
 
         # Coordinates, in pixels, to start writing text from
-        coordinates = pymupdf.Point(200.0, 50.0)
+        coordinate_x = 200.0
+        coordinate_y = 50.0
 
         # Angle to rotate written text by
         rotation = 0.0
 
+        # Page to write on, 0 is first page
         # Only applies to files with pages, such as PDFs
-        page: pymupdf.Page = file[0]
+        page_number = 0
 
         #---------------------------------------------------------------------#
 
         try:
             font_name = os.path.basename(font_file_path)
+            page = file[page_number]
             page.insert_font(fontfile=font_file_path, fontname=font_name)
-            page.insert_text(coordinates,
+            page.insert_text(pymupdf.Point(coordinate_x, coordinate_y),
                              text,
                              fontname=font_name,
                              fontsize=font_size,

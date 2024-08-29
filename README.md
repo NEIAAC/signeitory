@@ -41,13 +41,15 @@ We use [PyMu](https://github.com/pymupdf/PyMuPDF) under the hood for the massive
         color = (0.2, 0.5, 0.7)
 
         # Coordinates, in pixels, to start writing text from
-        coordinates = pymupdf.Point(200.0, 50.0)
+        coordinate_x = 200.0
+        coordinate_y = 50.0
 
         # Angle to rotate written text by
         rotation = 0.0
 
+        # Page to write on, 0 is first page
         # Only applies to files with pages, such as PDFs
-        page: pymupdf.Page = file[0]
+        page_number = 0
 
         #---------------------------------------#
   ```
