@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/NEIAAC/signeitory/compare/v0.1.0...v0.2.0) (2024-08-29)
+
+
+### Features
+
+* add more log output ([6868b76](https://github.com/NEIAAC/signeitory/commit/6868b76ccffbb7cce686853c5a995f4e914a7ea5))
+
 ## 0.1.0 (2024-08-29)
 
 
