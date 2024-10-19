@@ -5,7 +5,6 @@ on:
     types: [opened, reopened, edited]
 
 jobs:
-  # Check if the PR has a title that matches the conventional commit format
   title:
     runs-on: ubuntu-latest
     steps:
@@ -18,5 +17,5 @@ jobs:
       - name: Setup commitlint config
         run: |
           echo 'extends: ["@commitlint/config-conventional"]' > .commitlintrc.yaml
-      - name: Validate PR title
+      - name: Ensure PR title matches the conventional commit message format
         run: echo "${{ github.event.pull_request.title }}" | npx commitlint

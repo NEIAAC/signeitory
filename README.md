@@ -6,56 +6,68 @@ We use [PyMu](https://github.com/pymupdf/PyMuPDF) under the hood for the massive
 
 ## Requirements 📋
 
-- Python 3.10.0+
+- Python 3.12.0+
 
 ## Usage 🚀
 
-- Clone the repository:
+- Go to the `Releases` page of the GitHub repository.
 
-  ```shell
-  git clone https://github.com/NEIAAC/signeitory.git
-  ```
+- Under the `Assets` section for the latest release, click the entry with the name of your operating system.
+
+- After downloading, extract the top content from the `.zip` to anywhere you want.
+
+### Windows
+
+- Run the `main.exe` file inside the extracted folder, you can create a shortcut with any name you like for this file.
+
+### Linux
+
+- Run the `main.bin` file inside the extracted folder. Note that compilation is targeted at Ubuntu (Wayland), other distributions may need additional actions to run the app.
+
+### MacOS
+
+- Run the bundle installer extracted from the `.zip` file.
+
+## Development 🛠️
+
+- Clone the repository and open a terminal **inside** it.
 
 - Install the dependencies:
 
   ```shell
-  pip install -r requirements.txt
+  # It is it recommend that a virtual environment is set before doing this!
+
+  pip install .
   ```
 
-- Create a `.env` file based on the provided `.env.example` file, with attention to the notes on each variable
-
-- Edit the `table.csv` file in the `data` folder, or add your own, with a single column containing the text you want to write on each file
-
-- Change text, font, color and placement:
-
-  ```python
-        #-------------CONFIGURATION-------------#
-
-        text = row[0]
-
-        # Font settings
-        font_file_path = "assets/comic_sans.ttf"
-        font_size = 24.0
-
-        # RGB color, in range 0-1
-        color = (0.2, 0.5, 0.7)
-
-        # Coordinates, in pixels, to start writing text from
-        coordinate_x = 200.0
-        coordinate_y = 50.0
-
-        # Angle to rotate written text by
-        rotation = 0.0
-
-        # Page to write on, 0 is first page
-        # Only applies to files with pages, such as PDFs
-        page_number = 0
-
-        #---------------------------------------#
-  ```
-
-- Run the script:
+- Start the app:
 
   ```shell
-  python main.py
+  python src/main.py
   ```
+
+## Tooling 🧰
+
+- Ruff is used as a linter and formatter:
+
+  ```shell
+  pip install .[check]
+  ruff check fix
+  ruff format
+  ```
+
+- PyTest and PyTest-Qt are used for testing:
+
+  ```shell
+  pip install .[test]
+  pytest
+  ```
+
+- Nuitka is used for cross-compiling to all supported platforms:
+
+  ```shell
+  pip install .[build]
+  nuitka <options>
+  ```
+
+  See the build [workflow](./.github/workflows/build.yaml) for a list of options used for each platform.
