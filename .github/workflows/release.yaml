@@ -18,7 +18,7 @@ jobs:
       tag-name: ${{ steps.metadata.outputs.tag_name }}
       release-created: ${{ steps.metadata.outputs.release_created }}
     steps:
-      - name: Update project metadata and release pull request
+      - name: Update project metadata and the release pull request
         uses: googleapis/release-please-action@v4
         id: metadata
         with:
