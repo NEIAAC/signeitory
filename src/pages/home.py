@@ -12,11 +12,11 @@ from qfluentwidgets import (
     InfoBarPosition,
 )
 
-from app import App
-from logic.example import ExampleThread
-from utils.config import config
-from utils.system_tray import SystemTray
-from utils import loader
+from src.app import App
+from src.logic.write import WriterThread
+from src.utils.config import config
+from src.utils.system_tray import SystemTray
+from src.utils import loader
 
 
 class HomePage(QWidget):
@@ -64,11 +64,11 @@ class HomePage(QWidget):
         self.startButton = PrimaryToolButton(FluentIcon.PLAY)
         self.startButton.setFixedWidth(100)
 
-        self.exampleWorker = None
+        self.worker = None
         self.startButtonLayout = QHBoxLayout()
         self.startButtonLayout.setAlignment(Qt.AlignmentFlag.AlignRight)
         self.startButtonLayout.addWidget(self.startButton)
-        self.startButton.clicked.connect(self.runExample)
+        self.startButton.clicked.connect(self.runWriter)
 
         self.contentWidget = QWidget()
         self.contentLayout = QVBoxLayout(self.contentWidget)
@@ -95,9 +95,9 @@ class HomePage(QWidget):
 
         self.setLayout(self.mainLayout)
 
-    def runExample(self):
+    def runWriter(self):
         """Runs the example logic for this page."""
-        if self.exampleWorker is not None and self.exampleWorker.isRunning():
+        if self.worker is not None and self.worker.isRunning():
             return
         if not self.inputField.text():
             InfoBar.error(
@@ -110,8 +110,8 @@ class HomePage(QWidget):
             )
             return
         self.startButton.setDisabled(True)
-        self.exampleWorker = ExampleThread(self.inputField.text())
-        self.exampleWorker.outputSignal.connect(
+        self.worker = WriterThread(self.inputField.text())
+        self.worker.outputSignal.connect(
             lambda text: (
                 self.outputBox.appendPlainText(text),
                 self.outputClearButton.setDisabled(False),
@@ -128,5 +128,5 @@ class HomePage(QWidget):
                 SystemTray().send("Example finished!", "Go back to the app.")
             self.finishSound.play()
 
-        self.exampleWorker.finished.connect(finished)
-        self.exampleWorker.start()
+        self.worker.finished.connect(finished)
+        self.worker.start()

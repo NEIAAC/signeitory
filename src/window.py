@@ -16,9 +16,10 @@ finally:
     sys.stdout = old
 from PySide6.QtCore import QSize, QPoint
 
-from utils.config import config
-from pages.home import HomePage
-from pages.settings import SettingsPage
+from src.utils.config import config
+from src.pages.home import HomePage
+from src.pages.help import HelpPage
+from src.pages.settings import SettingsPage
 
 
 class Window(FluentWindow):
@@ -39,6 +40,9 @@ class Window(FluentWindow):
         self.show()
 
         self.addSubInterface(HomePage(), FluentIcon.HOME, "Home")
+        self.addSubInterface(
+            HelpPage(), FluentIcon.HELP, "Help", NavigationItemPosition.BOTTOM
+        )
         self.addSubInterface(
             SettingsPage(),
             FluentIcon.SETTING,

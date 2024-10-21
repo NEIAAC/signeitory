@@ -11,7 +11,7 @@ from qfluentwidgets import (
     Dialog,
 )
 
-from utils.config import config
+from src.utils.config import config
 
 
 class SettingsPage(QWidget):

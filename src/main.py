@@ -1,9 +1,10 @@
 import sys
 
-from utils.logger import logger, qMessageHandler
-from app import App
 from PySide6 import QtCore
-from window import Window
+
+from src.utils.logger import logger, qMessageHandler
+from src.app import App
+from src.window import Window
 
 if __name__ == "__main__":
     with logger.catch():

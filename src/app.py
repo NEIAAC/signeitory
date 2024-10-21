@@ -2,10 +2,10 @@ from PySide6.QtWidgets import QApplication
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QIcon, QPixmap
 
-from version import __version__
-from utils import loader
-from utils.logger import logger
-from utils.constants import (
+from src.version import __version__
+from src.utils import loader
+from src.utils.logger import logger
+from src.utils.constants import (
     EXECUTABLE_NAME,
     AUTHOR_NAME,
     AUTHOR_DOMAIN,

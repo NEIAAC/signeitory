@@ -12,7 +12,7 @@ from qfluentwidgets import (
     ColorValidator,
 )
 
-from utils.constants import DATA_PATH
+from src.utils.constants import DATA_PATH
 
 CONFIG_PATH = os.path.join(DATA_PATH, "config.json")
 
