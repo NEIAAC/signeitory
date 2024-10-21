@@ -52,8 +52,13 @@ We use [PyMu](https://github.com/pymupdf/PyMuPDF) under the hood for the massive
 
   ```shell
   pip install .[check]
-  ruff check fix
+  ruff check --fix
   ruff format
+
+  # To automatically lint and format on every commit install the pre-commit hooks:
+  pre-commit install
+
+  # Note that when using pre-commit the git command will fail if any files are linted or formatted. You will have to add them to the staged area again to apply the changes.
   ```
 
 - PyTest and PyTest-Qt are used for testing:
