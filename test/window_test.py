@@ -1,4 +1,4 @@
-from src.window import Window
+from window import Window
 
 from pytestqt.qt_compat import qt_api as qtapi
 

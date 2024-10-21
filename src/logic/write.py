@@ -2,7 +2,7 @@ from datetime import datetime
 
 from PySide6.QtCore import QThread, Signal
 
-from src.utils.logger import logger
+from utils.logger import logger
 
 
 class WriterThread(QThread):

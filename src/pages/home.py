@@ -12,11 +12,11 @@ from qfluentwidgets import (
     InfoBarPosition,
 )
 
-from src.app import App
-from src.logic.write import WriterThread
-from src.utils.config import config
-from src.utils.system_tray import SystemTray
-from src.utils import loader
+from app import App
+from logic.write import WriterThread
+from utils.config import config
+from utils.system_tray import SystemTray
+from utils import loader
 
 
 class HomePage(QWidget):

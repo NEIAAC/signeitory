@@ -1,8 +1,8 @@
 from PySide6.QtWidgets import QSystemTrayIcon
 from PySide6.QtGui import QIcon, QPixmap
 
-from src.utils.constants import LOGO_PATH
-from src.utils import loader
+from utils.constants import LOGO_PATH
+from utils import loader
 
 class SystemTray(QSystemTrayIcon):
     def __init__(self, visible: bool = False):

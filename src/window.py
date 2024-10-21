@@ -16,10 +16,10 @@ finally:
     sys.stdout = old
 from PySide6.QtCore import QSize, QPoint
 
-from src.utils.config import config
-from src.pages.home import HomePage
-from src.pages.help import HelpPage
-from src.pages.settings import SettingsPage
+from utils.config import config
+from pages.home import HomePage
+from pages.help import HelpPage
+from pages.settings import SettingsPage
 
 
 class Window(FluentWindow):

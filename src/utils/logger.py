@@ -5,7 +5,7 @@ import sys
 from loguru import logger
 from PySide6 import QtCore
 
-from src.utils.constants import DATA_PATH
+from utils.constants import DATA_PATH
 
 LOGS_PATH = os.path.join(DATA_PATH, "logs")
 
