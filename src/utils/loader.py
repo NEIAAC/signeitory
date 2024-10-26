@@ -3,8 +3,8 @@ import os
 
 def base(suffix: str) -> str:
     current = os.path.dirname(os.path.realpath(__file__))
-    parsed = os.path.abspath(os.path.join(current, "..", suffix))
-    return parsed
+    root = os.path.abspath(os.path.join(current, "..", suffix))
+    return root
 
 
 def resources(suffix: str) -> str:

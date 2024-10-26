@@ -28,9 +28,7 @@ class ConfigItem(OptionsConfigItem):
 
 
 class Config(QConfig):
-    """
-    Global object for app options.
-    """
+    """Global object for app data."""
 
     maximized = ConfigItem("Window", "Maximized", False, BoolValidator())
     width = ConfigItem("Window", "Width", 500)
@@ -47,12 +45,10 @@ class Config(QConfig):
     color = ConfigItem(
         "Window",
         "Color",
-        qfluentwidgets.QColor("#F68788"),
+        qfluentwidgets.QColor("#4DA8DF"),
         ColorValidator(qfluentwidgets.QColor()),
         ColorSerializer(),
     )
-
-    input = ConfigItem("Example", "Input", "")
 
     def reset(self):
         for _, attr in self.__class__.__dict__.items():
@@ -61,9 +57,5 @@ class Config(QConfig):
 
 
 config = Config()
-config.style.valueChanged.connect(lambda mode: (qfluentwidgets.setTheme(mode)))
-config.color.valueChanged.connect(
-    lambda color: (qfluentwidgets.setThemeColor(color))
-)
 
 qconfig.load(CONFIG_PATH, config)

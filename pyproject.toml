@@ -7,7 +7,7 @@ dependencies = [
     "pyside6-fluent-widgets==1.6.6",
     "loguru==0.7.2",
     "pandas==2.2.2",
-    "PyMuPDFb==1.24.9",
+    "pymupdf==1.24.12",
 ]
 
 [project.optional-dependencies]

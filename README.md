@@ -4,76 +4,86 @@ With Signeitory it's as simple as possible to write text into a variety of file 
 
 We use [PyMu](https://github.com/pymupdf/PyMuPDF) under the hood for the massive amount of supported writeable file formats it allows, you can find the full feature list [here](https://pymupdf.readthedocs.io/en/latest/about.html).
 
-## Requirements 📋
-
-- Python 3.12.0+
-
 ## Usage 🚀
 
-- Go to the `Releases` page of the GitHub repository.
+- The app is automatically built by a pipeline with every release, so we provide **direct download links** for most operating systems.
 
-- Under the `Assets` section for the latest release, click the entry with the name of your operating system.
+- ### Windows 🪟
 
-- After downloading, extract the top content from the `.zip` to anywhere you want.
+  - Use this [link](https://github.com/NEIAAC/signeitory/releases/latest/download/Windows.zip) to start the download.
 
-### Windows
+  - Run the `main.exe` file inside the extracted folder, you can create a shortcut with any name you like for this file.
 
-- Run the `main.exe` file inside the extracted folder, you can create a shortcut with any name you like for this file.
+- ### Linux 🐧
 
-### Linux
+  - Use this [link](https://github.com/NEIAAC/signeitory/releases/latest/download/Linux.zip) to start the download.
 
-- Run the `main.bin` file inside the extracted folder. Note that compilation is targeted at Ubuntu (Wayland), other distributions may need additional actions to run the app.
+  - Run the `main.bin` file inside the extracted folder. Note that compilation is targeted at Ubuntu (Wayland), other distributions may need additional actions to run the app.
 
-### MacOS
+- ### MacOS 🍎
 
-- Run the bundle installer extracted from the `.zip` file.
+  - Use this [link](https://github.com/NEIAAC/signeitory/releases/latest/download/MacOS.zip) to start the download.
+
+  - Run the bundle installer extracted from the `.zip` file.
+
+- Depending on your operating system, you _may_ get a **security warning** due to the app not being signed. You can **safely ignore it** as our builds are automated from the open sourced codebase.
+
+- Detailed usage instructions can be found in the [wiki](https://github.com/NEIAAC/signeitory/wiki) page.
+
+- See the [example](./example/) directory for demo files.
 
 ## Development 🛠️
 
-- Clone the repository and open a terminal **inside** it.
+- ### Requirements 📋
 
-- Install the dependencies:
+  - Python 3.12.0+
 
-  ```shell
-  # It is it recommend that a virtual environment is set before doing this!
+- ### Setup ⚙️
 
-  pip install .
-  ```
+  - Clone the repository and open a terminal **inside** it.
 
-- Start the app:
+  - Install the dependencies:
 
-  ```shell
-  python src/main.py
-  ```
+    ```shell
+    # It is it recommend that a virtual environment is set before doing this!
 
-## Tooling 🧰
+    pip install .
+    ```
 
-- Ruff is used as a linter and formatter:
+  - Start the app:
 
-  ```shell
-  pip install .[check]
-  ruff check --fix
-  ruff format
+    ```shell
+    python src/main.py
+    ```
 
-  # To automatically lint and format on every commit install the pre-commit hooks:
-  pre-commit install
+- ### Tooling 🧰
 
-  # Note that when using pre-commit the git command will fail if any files are lint fixed or formatted.
-  # You will have to add the changed files to the staged area and commit again to apply the changes.
-  ```
+  - Ruff is used as a linter and formatter:
 
-- PyTest and PyTest-Qt are used for testing:
+    ```shell
+    pip install .[check]
+    ruff check --fix
+    ruff format
 
-  ```shell
-  pip install .[test]
-  pytest
-  ```
+    # To automatically lint and format on every commit install the pre-commit hooks:
+    pre-commit install
 
-- Nuitka is used for cross-compiling to all supported platforms:
+    # Note that when using pre-commit the git command will fail if any files are lint fixed or formatted.
+    # You will have to add the changed files to the staged area and commit again to apply the changes.
+    ```
 
-  ```shell
-  pip install .[build]
-  nuitka <options>
-  ```
+  - PyTest and PyTest-Qt are used for testing:
 
-  See the build [workflow](./.github/workflows/build.yaml) for a list of options used for each platform.
+    ```shell
+    pip install .[test]
+    pytest
+    ```
+
+  - Nuitka is used for cross-compiling to all supported platforms:
+
+    ```shell
+    pip install .[build]
+    nuitka <options>
+    ```
+
+    See the build [workflow](./.github/workflows/build.yaml) for a list of options used for each platform.

@@ -4,7 +4,10 @@ from PySide6.QtGui import QIcon, QPixmap
 from utils.constants import LOGO_PATH
 from utils import loader
 
+
 class SystemTray(QSystemTrayIcon):
+    """Class to access system tray/notification functionality."""
+
     def __init__(self, visible: bool = False):
         super().__init__()
 
