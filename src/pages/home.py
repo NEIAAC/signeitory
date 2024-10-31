@@ -16,12 +16,17 @@ from qfluentwidgets import (
     TextBrowser,
     InfoBar,
     InfoBarPosition,
+    ColorSettingCard,
+    FlowLayout,
+    DoubleSpinBox,
+    SpinBox,
 )
 
 from app import App
 from logic.write import WriterThread
 from utils import loader
 from utils.system_tray import SystemTray
+from utils.config import config
 
 
 class HomePage(QWidget):
@@ -36,6 +41,104 @@ class HomePage(QWidget):
             QUrl.fromLocalFile(loader.resources("sounds/success.wav"))
         )
         self.finishSound.setVolume(0.1)
+
+        self.xCoordinateLabel = BodyLabel("<b>X COORDINATE</b>")
+        self.xCoordinateInput = DoubleSpinBox()
+        self.xCoordinateInput.setValue(50.0)
+        self.xCoordinateInput.setFixedWidth(200)
+        self.xCoordinateLayout = QVBoxLayout()
+        self.xCoordinateLayout.setSpacing(10)
+        self.xCoordinateLayout.addWidget(self.xCoordinateLabel)
+        self.xCoordinateLayout.addWidget(self.xCoordinateInput)
+
+        self.yCoordinateLabel = BodyLabel("<b>Y COORDINATE</b>")
+        self.yCoordinateInput = DoubleSpinBox()
+        self.yCoordinateInput.setValue(50.0)
+        self.yCoordinateInput.setFixedWidth(200)
+        self.yCoordinateLayout = QVBoxLayout()
+        self.yCoordinateLayout.setSpacing(10)
+        self.yCoordinateLayout.addWidget(self.yCoordinateLabel)
+        self.yCoordinateLayout.addWidget(self.yCoordinateInput)
+
+        self.rotationLabel = BodyLabel("<b>ROTATION</b>")
+        self.rotationInput = DoubleSpinBox()
+        self.rotationInput.setValue(0.0)
+        self.rotationInput.setFixedWidth(200)
+        self.rotationLayout = QVBoxLayout()
+        self.rotationLayout.setSpacing(10)
+        self.rotationLayout.addWidget(self.rotationLabel)
+        self.rotationLayout.addWidget(self.rotationInput)
+
+        self.sizeLabel = BodyLabel("<b>SIZE</b>")
+        self.sizeInput = DoubleSpinBox()
+        self.sizeInput.setFixedWidth(200)
+        self.sizeInput.setMinimum(1)
+        self.sizeInput.setMaximum(9999)
+        self.sizeInput.setValue(config.textSize.get())
+        self.sizeInput.setStepType(SpinBox.StepType.AdaptiveDecimalStepType)
+        self.sizeInput.textChanged.connect(
+            lambda text: config.textSize.set(str(text))
+        )
+        self.sizeLayout = QVBoxLayout()
+        self.sizeLayout.setSpacing(10)
+        self.sizeLayout.addWidget(self.sizeLabel)
+        self.sizeLayout.addWidget(self.sizeInput)
+
+        self.pageNumberLabel = BodyLabel("<b>PAGE NUMBER</b>")
+        self.pageNumberInput = SpinBox()
+        self.pageNumberInput.setFixedWidth(200)
+        self.pageNumberInput.setMinimum(0)
+        self.pageNumberInput.setValue(0)
+        self.pageNumberLayout = QVBoxLayout()
+        self.pageNumberLayout.setSpacing(10)
+        self.pageNumberLayout.addWidget(self.pageNumberLabel)
+        self.pageNumberLayout.addWidget(self.pageNumberInput)
+
+        self.inputsLayout = FlowLayout()
+        self.inputsLayout.setVerticalSpacing(20)
+        self.inputsLayout.setHorizontalSpacing(20)
+        self.inputsLayout.addItem(self.xCoordinateLayout)
+        self.inputsLayout.addItem(self.yCoordinateLayout)
+        self.inputsLayout.addItem(self.rotationLayout)
+        self.inputsLayout.addItem(self.sizeLayout)
+        self.inputsLayout.addItem(self.pageNumberLayout)
+
+        self.colorLabel = BodyLabel("<b>COLOR</b>")
+        self.colorInput = ColorSettingCard(
+            config.textColor,
+            FluentIcon.PENCIL_INK,
+            "Use the box on the right to pick a color!",
+        )
+        self.colorInput.setFixedWidth(425)
+        self.colorLayout = QVBoxLayout()
+        self.colorLayout.setSpacing(10)
+        self.colorLayout.addWidget(self.colorLabel)
+        self.colorLayout.addWidget(self.colorInput)
+
+        self.fontLabel = BodyLabel("<b>FONT FILE</b>")
+        self.fontFileInput = LineEdit()
+        self.fontFileInput.setMaximumWidth(500)
+        self.fontFileInput.setReadOnly(True)
+        self.fontFileInput.setPlaceholderText("No font file selected.")
+        self.fontFileDialog = QFileDialog()
+        self.fontFileDialog.setFileMode(QFileDialog.FileMode.ExistingFile)
+        self.fontFilePickButton = PrimaryToolButton(FluentIcon.FOLDER)
+        self.fontFilePickButton.clicked.connect(
+            lambda: self.fontFileInput.setText(
+                self.fontFileDialog.getOpenFileName(
+                    self, "Select a font file!"
+                )[0]
+            )
+        )
+        self.fontContentLayout = QHBoxLayout()
+        self.fontContentLayout.setSpacing(10)
+        self.fontContentLayout.addWidget(self.fontFilePickButton)
+        self.fontContentLayout.addWidget(self.fontFileInput)
+        self.fontLayout = QVBoxLayout()
+        self.fontLayout.setSpacing(10)
+        self.fontLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        self.fontLayout.addWidget(self.fontLabel)
+        self.fontLayout.addLayout(self.fontContentLayout)
 
         self.documentLabel = BodyLabel("<b>DOCUMENT FILE</b>")
         self.documentPicker = QFileDialog()
@@ -150,8 +253,9 @@ class HomePage(QWidget):
         self.contentLayout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.contentLayout.setContentsMargins(40, 40, 50, 40)
         self.contentLayout.setSpacing(40)
-        # self.contentLayout.addLayout(self.smtpLayout)
-        # self.contentLayout.addLayout(self.headLayout)
+        self.contentLayout.addLayout(self.inputsLayout)
+        self.contentLayout.addLayout(self.colorLayout)
+        self.contentLayout.addLayout(self.fontLayout)
         self.contentLayout.addLayout(self.documentLayout)
         self.contentLayout.addLayout(self.tableLayout)
         self.contentLayout.addLayout(self.outputLayout)

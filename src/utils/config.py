@@ -10,6 +10,7 @@ from qfluentwidgets import (
     BoolValidator,
     ColorSerializer,
     ColorValidator,
+    RangeValidator,
 )
 
 from utils.constants import DATA_PATH
@@ -45,7 +46,16 @@ class Config(QConfig):
     color = ConfigItem(
         "Window",
         "Color",
-        qfluentwidgets.QColor("#4DA8DF"),
+        qfluentwidgets.QColor("#FA8E8F"),
+        ColorValidator(qfluentwidgets.QColor()),
+        ColorSerializer(),
+    )
+
+    textSize = ConfigItem("Write", "TextSize", 16, RangeValidator(1, 9999))
+    textColor = ConfigItem(
+        "Write",
+        "TextColor",
+        qfluentwidgets.QColor("#AAD58F"),
         ColorValidator(qfluentwidgets.QColor()),
         ColorSerializer(),
     )
