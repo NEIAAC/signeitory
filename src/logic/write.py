@@ -13,22 +13,22 @@ class WriterThread(QThread):
 
     def __init__(
         self,
-        filePath: str,
+        coordinateX: float,
+        coordinateY: float,
+        rotation: float,
+        fontSize: float,
+        pageNumber: int,
+        color: Tuple[float, float, float],
+        fontPath: str,
+        documentPath: str,
         tablePath: str,
         outputPath: str,
-        fontFilePath: str,
-        coordinateX: float = 200.0,
-        coordinateY: float = 50.0,
-        fontSize: float = 24.0,
-        color: Tuple[float, float, float] = (0.2, 0.5, 0.7),
-        rotation: float = 0.0,
-        pageNumber: int = 0,
     ):
         super().__init__()
-        self.filePath = filePath
+        self.documentPath = documentPath
         self.tablePath = tablePath
         self.outputPath = outputPath
-        self.fontFilePath = fontFilePath
+        self.fontPath = fontPath
         self.coordinateX = coordinateX
         self.coordinateY = coordinateY
         self.fontSize = fontSize
@@ -48,18 +48,20 @@ class WriterThread(QThread):
         else:
             raise ValueError("Unsupported file extension")
 
-        records = table.values.tolist()
+        records = table.to_dict("records")
+        headers = list(table.columns)
 
-        # Convert NaN to empty string to match EmailerThread behavior
-        for i, record in enumerate(records):
-            if isinstance(record[0], float) and isnan(record[0]):
-                records[i][0] = ""
+        # Convert NaN, which is parsed in empty cells, to empty string
+        for record in records:
+            for key in record:
+                if type(record[key]) is float and isnan(record[key]):
+                    record[key] = ""
 
-        return records
+        return records, headers
 
-    def readFile(self) -> bytes:
+    def readDocument(self) -> bytes:
         try:
-            file = pymupdf.open(self.filePath)
+            file = pymupdf.open(self.documentPath)
             data = file.convert_to_pdf()
             return data
         except Exception as e:
@@ -73,44 +75,46 @@ class WriterThread(QThread):
 
         with logger.catch():
             try:
-                data = self.readFile()
-                self.output("Writeable file loaded")
+                data = self.readDocument()
+                logger.info(
+                    f"Document loaded, extension is \"{self.documentPath.split('.')[-1]}\""
+                )
             except Exception as e:
                 self.output(f"Failed to open file: {e}", "ERROR")
                 return
 
             try:
-                table = self.readTable()
-                self.output(
-                    f"Table loaded, found {len(table)} {len(table) == 1 and 'row' or 'rows'}"
-                )
+                rows, cols = self.readTable()
             except Exception as e:
                 self.output(f"Failed to load table: {e}", "ERROR")
                 return
 
-            if not table:
+            logger.info(
+                f"Table loaded, found {len(rows)} {len(rows) == 1 and 'row' or 'rows'}"
+            )
+            logger.info(f"Table columns read: {cols}")
+            logger.info(f"Table rows read: {rows}")
+
+            if not rows or not cols:
                 self.output("Given table is empty", "ERROR")
                 return
 
             total: int = 0
             successful: int = 0
-
-            for row in table:
+            for row in rows:
                 total += 1
-                text = row[0]
+                text = row[cols[0]]
 
                 if not text:
                     self.output(f"[{total}] Text is empty on this row", "ERROR")
                     continue
 
-                pdf: pymupdf.Document = pymupdf.open(data, filetype="pdf")
+                pdf: pymupdf.Document = pymupdf.open("pdf", data)
 
                 try:
-                    fontName = os.path.basename(self.fontFilePath)
+                    fontName = os.path.basename(self.fontPath)
                     page: pymupdf.Page = pdf[self.pageNumber]
-                    page.insert_font(
-                        fontfile=self.fontFilePath, fontname=fontName
-                    )
+                    page.insert_font(fontfile=self.fontPath, fontname=fontName)
                     page.insert_text(
                         pymupdf.Point(self.coordinateX, self.coordinateY),
                         text,

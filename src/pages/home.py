@@ -285,13 +285,19 @@ class HomePage(QWidget):
             return
 
         schema = {
+            "X Coordinate": self.xCoordinateInput.value(),
+            "Y Coordinate": self.yCoordinateInput.value(),
+            "Rotation": self.rotationInput.value(),
+            "Size": self.sizeInput.value(),
+            "Page number": self.pageNumberInput.value(),
+            "Color": self.colorInput.colorPicker.color,
             "Font path": self.fontFileInput.text(),
             "Document path": self.documentFileInput.text(),
             "Table path": self.tableFileInput.text(),
             "Output folder": self.outputFolderInput.text(),
         }
         for input in schema:
-            if not schema[input]:
+            if schema[input] is None or schema[input] == "":
                 InfoBar.error(
                     title=f"{input} field cannot be empty!",
                     content="",
@@ -304,7 +310,22 @@ class HomePage(QWidget):
 
         self.runButton.setDisabled(True)
 
-        self.worker = WriterThread("Hello World!")
+        self.worker = WriterThread(
+            self.xCoordinateInput.value(),
+            self.yCoordinateInput.value(),
+            self.rotationInput.value(),
+            self.sizeInput.value(),
+            self.pageNumberInput.value(),
+            [
+                self.colorInput.colorPicker.color.redF(),
+                self.colorInput.colorPicker.color.greenF(),
+                self.colorInput.colorPicker.color.blueF(),
+            ],
+            self.fontFileInput.text(),
+            self.documentFileInput.text(),
+            self.tableFileInput.text(),
+            self.outputFolderInput.text(),
+        )
 
         def output(text, level):
             if level == "ERROR":
