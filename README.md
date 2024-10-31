@@ -4,58 +4,86 @@ With Signeitory it's as simple as possible to write text into a variety of file 
 
 We use [PyMu](https://github.com/pymupdf/PyMuPDF) under the hood for the massive amount of supported writeable file formats it allows, you can find the full feature list [here](https://pymupdf.readthedocs.io/en/latest/about.html).
 
-## Requirements 📋
-
-- Python 3.10.0+
-
 ## Usage 🚀
 
-- Clone the repository:
+- The app is automatically built by a pipeline with every release, so we provide **direct download links** for most operating systems.
 
-  ```shell
-  git clone https://github.com/NEIAAC/signeitory.git
-  ```
+- ### Windows 🪟
 
-- Install the dependencies:
+  - Use this [link](https://github.com/NEIAAC/signeitory/releases/latest/download/Windows.zip) to start the download.
 
-  ```shell
-  pip install -r requirements.txt
-  ```
+  - Run the `main.exe` file inside the extracted folder, you can create a shortcut with any name you like for this file.
 
-- Create a `.env` file based on the provided `.env.example` file, with attention to the notes on each variable
+- ### Linux 🐧
 
-- Edit the `table.csv` file in the `data` folder, or add your own, with a single column containing the text you want to write on each file
+  - Use this [link](https://github.com/NEIAAC/signeitory/releases/latest/download/Linux.zip) to start the download.
 
-- Change text, font, color and placement:
+  - Run the `main.bin` file inside the extracted folder. Note that compilation is targeted at Ubuntu (Wayland), other distributions may need additional actions to run the app.
 
-  ```python
-        #-------------CONFIGURATION-------------#
+- ### MacOS 🍎
 
-        text = row[0]
+  - Use this [link](https://github.com/NEIAAC/signeitory/releases/latest/download/MacOS.zip) to start the download.
 
-        # Font settings
-        font_file_path = "assets/comic_sans.ttf"
-        font_size = 24.0
+  - Run the bundle installer extracted from the `.zip` file.
 
-        # RGB color, in range 0-1
-        color = (0.2, 0.5, 0.7)
+- Depending on your operating system, you _may_ get a **security warning** due to the app not being signed. You can **safely ignore it** as our builds are automated from the open sourced codebase.
 
-        # Coordinates, in pixels, to start writing text from
-        coordinate_x = 200.0
-        coordinate_y = 50.0
+- Detailed usage instructions can be found in the [wiki](https://github.com/NEIAAC/signeitory/wiki) page.
 
-        # Angle to rotate written text by
-        rotation = 0.0
+- See the [example](./example/) directory for demo files.
 
-        # Page to write on, 0 is first page
-        # Only applies to files with pages, such as PDFs
-        page_number = 0
+## Development 🛠️
 
-        #---------------------------------------#
-  ```
+- ### Requirements 📋
 
-- Run the script:
+  - Python 3.12.0+
 
-  ```shell
-  python main.py
-  ```
+- ### Setup ⚙️
+
+  - Clone the repository and open a terminal **inside** it.
+
+  - Install the dependencies:
+
+    ```shell
+    # It is it recommend that a virtual environment is set before doing this!
+
+    pip install .
+    ```
+
+  - Start the app:
+
+    ```shell
+    python src/main.py
+    ```
+
+- ### Tooling 🧰
+
+  - Ruff is used as a linter and formatter:
+
+    ```shell
+    pip install .[check]
+    ruff check --fix
+    ruff format
+
+    # To automatically lint and format on every commit install the pre-commit hooks:
+    pre-commit install
+
+    # Note that when using pre-commit the git command will fail if any files are lint fixed or formatted.
+    # You will have to add the changed files to the staged area and commit again to apply the changes.
+    ```
+
+  - PyTest and PyTest-Qt are used for testing:
+
+    ```shell
+    pip install .[test]
+    pytest
+    ```
+
+  - Nuitka is used for cross-compiling to all supported platforms:
+
+    ```shell
+    pip install .[build]
+    nuitka <options>
+    ```
+
+    See the build [workflow](./.github/workflows/build.yaml) for a list of options used for each platform.
