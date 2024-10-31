@@ -7,6 +7,8 @@ from typing import Tuple
 
 from utils.logger import logger
 
+MAX_TEXT_LENGTH = 200
+
 
 class WriterThread(QThread):
     outputSignal = Signal(str, str)
@@ -15,8 +17,8 @@ class WriterThread(QThread):
         self,
         coordinateX: float,
         coordinateY: float,
-        rotation: float,
         fontSize: float,
+        rotation: int,
         pageNumber: int,
         color: Tuple[float, float, float],
         fontPath: str,
@@ -98,22 +100,37 @@ class WriterThread(QThread):
             if not rows or not cols:
                 self.output("Given table is empty", "ERROR")
                 return
+            if len(cols) != 1:
+                self.output(
+                    "Given table must have exactly one column with the text to write on each row",
+                    "ERROR",
+                )
+                return
 
             total: int = 0
             successful: int = 0
             for row in rows:
                 total += 1
-                text = row[cols[0]]
+                text = row[cols[0]].strip()
 
                 if not text:
-                    self.output(f"[{total}] Text is empty on this row", "ERROR")
+                    self.output(
+                        f"[{total}] Text to write is empty on this row", "ERROR"
+                    )
+                    continue
+                if len(text) > MAX_TEXT_LENGTH:
+                    self.output(
+                        f"[{total}] Text to write has more than {MAX_TEXT_LENGTH} characters on this row",
+                        "ERROR",
+                    )
                     continue
 
-                pdf: pymupdf.Document = pymupdf.open("pdf", data)
+                pdf = pymupdf.open("pdf", data)
 
                 try:
                     fontName = os.path.basename(self.fontPath)
-                    page: pymupdf.Page = pdf[self.pageNumber]
+                    page = pdf[self.pageNumber]
+                    page.clean_contents()
                     page.insert_font(fontfile=self.fontPath, fontname=fontName)
                     page.insert_text(
                         pymupdf.Point(self.coordinateX, self.coordinateY),
@@ -130,7 +147,15 @@ class WriterThread(QThread):
                     continue
 
                 try:
-                    outputFile = os.path.join(self.outputPath, f"{text}.pdf")
+                    safeName: str = ""
+                    for char in text:
+                        if char.isalnum():
+                            safeName += char
+                        else:
+                            safeName += "-"
+                    outputFile = os.path.join(
+                        self.outputPath, f"{safeName}.pdf"
+                    )
                     pdf.save(outputFile)
                     successful += 1
                     self.output(f"[{total}] Wrote text '{text}' to file")

@@ -20,6 +20,7 @@ from qfluentwidgets import (
     FlowLayout,
     DoubleSpinBox,
     SpinBox,
+    ComboBox,
 )
 
 from app import App
@@ -61,8 +62,10 @@ class HomePage(QWidget):
         self.yCoordinateLayout.addWidget(self.yCoordinateInput)
 
         self.rotationLabel = BodyLabel("<b>ROTATION</b>")
-        self.rotationInput = DoubleSpinBox()
-        self.rotationInput.setValue(0.0)
+        self.rotationInput = ComboBox()
+        for rotation in ["0", "90", "180", "270"]:
+            self.rotationInput.addItem(rotation, userData=int(rotation))
+        self.rotationInput.setCurrentIndex(0)
         self.rotationInput.setFixedWidth(200)
         self.rotationLayout = QVBoxLayout()
         self.rotationLayout.setSpacing(10)
@@ -287,7 +290,9 @@ class HomePage(QWidget):
         schema = {
             "X Coordinate": self.xCoordinateInput.value(),
             "Y Coordinate": self.yCoordinateInput.value(),
-            "Rotation": self.rotationInput.value(),
+            "Rotation": self.rotationInput.itemData(
+                self.rotationInput.currentIndex()
+            ),
             "Size": self.sizeInput.value(),
             "Page number": self.pageNumberInput.value(),
             "Color": self.colorInput.colorPicker.color,
@@ -313,8 +318,8 @@ class HomePage(QWidget):
         self.worker = WriterThread(
             self.xCoordinateInput.value(),
             self.yCoordinateInput.value(),
-            self.rotationInput.value(),
             self.sizeInput.value(),
+            self.rotationInput.itemData(self.rotationInput.currentIndex()),
             self.pageNumberInput.value(),
             [
                 self.colorInput.colorPicker.color.redF(),
