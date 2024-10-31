@@ -80,7 +80,7 @@ class HomePage(QWidget):
         self.sizeInput.setValue(config.textSize.get())
         self.sizeInput.setStepType(SpinBox.StepType.AdaptiveDecimalStepType)
         self.sizeInput.textChanged.connect(
-            lambda text: config.textSize.set(str(text))
+            lambda text: config.textSize.set(float(text))
         )
         self.sizeLayout = QVBoxLayout()
         self.sizeLayout.setSpacing(10)

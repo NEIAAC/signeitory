@@ -76,6 +76,13 @@ class WriterThread(QThread):
         self.output("...")
 
         with logger.catch():
+            if not os.path.isdir(self.outputPath):
+                self.output(
+                    f"Output directory {self.outputPath} not found or is not a directory",
+                    "ERROR",
+                )
+                return
+
             try:
                 data = self.readDocument()
                 logger.info(
@@ -152,9 +159,9 @@ class WriterThread(QThread):
                         if char.isalnum():
                             safeName += char
                         else:
-                            safeName += "-"
+                            safeName += "_"
                     outputFile = os.path.join(
-                        self.outputPath, f"{safeName}.pdf"
+                        self.outputPath, f"{safeName.lower()}.pdf"
                     )
                     pdf.save(outputFile)
                     successful += 1
