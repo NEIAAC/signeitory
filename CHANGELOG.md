@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/NEIAAC/signeitory/compare/v0.2.0...v1.0.0) (2024-10-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* add graphical user interface ([#3](https://github.com/NEIAAC/signeitory/issues/3))
+
+### Features
+
+* add graphical user interface ([#3](https://github.com/NEIAAC/signeitory/issues/3)) ([d9f55cc](https://github.com/NEIAAC/signeitory/commit/d9f55ccaaa082c9090aa8e0401efdde729c0909b))
+
 ## [0.2.0](https://github.com/NEIAAC/signeitory/compare/v0.1.0...v0.2.0) (2024-08-29)
 
 
