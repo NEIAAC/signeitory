@@ -24,7 +24,7 @@ from qfluentwidgets import (
 )
 
 from app import App
-from logic.write import WriterThread
+from services.write import WriterThread
 from utils import loader
 from utils.system_tray import SystemTray
 from utils.config import config

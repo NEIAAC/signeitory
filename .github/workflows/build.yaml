@@ -116,6 +116,7 @@ jobs:
           file-description: ${{ env.NAME }} app, created by ${{ env.AUTHOR }}.
           output-dir: build
           enable-plugins: pyside6
+          clang: true
 
       - name: Mutate artifact
         run: mv build/main.dist build/${{ env.NAME }}
