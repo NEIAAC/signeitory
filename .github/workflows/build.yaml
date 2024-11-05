@@ -55,7 +55,7 @@ jobs:
           nuitka-version: main
           script-name: src/main.py
           onefile: false
-          standalone: true
+          standalone: false
           include-data-dir: src/resources=resources
           macos-create-app-bundle: true
           macos-app-icon: src/resources/icons/logo.png
@@ -117,6 +117,7 @@ jobs:
           output-dir: build
           enable-plugins: pyside6
           clang: true
+          static-libpython: yes
 
       - name: Mutate artifact
         run: mv build/main.dist build/${{ env.NAME }}
