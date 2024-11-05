@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/NEIAAC/signeitory/compare/v1.0.0...v1.0.1) (2024-11-05)
+
+
+### Bug Fixes
+
+* force clang compilation for linux ([34a8ba2](https://github.com/NEIAAC/signeitory/commit/34a8ba269c5a2678c73eeea34a31068bec124f25))
+
 ## [1.0.0](https://github.com/NEIAAC/signeitory/compare/v0.2.0...v1.0.0) (2024-10-31)
 
 
