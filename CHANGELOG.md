@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/NEIAAC/signeitory/compare/v1.0.1...v1.0.2) (2024-11-05)
+
+
+### Bug Fixes
+
+* improve compilation start mode ([8d37e89](https://github.com/NEIAAC/signeitory/commit/8d37e891412e41bc9ae8169749b8805d73f2048c))
+
 ## [1.0.1](https://github.com/NEIAAC/signeitory/compare/v1.0.0...v1.0.1) (2024-11-05)
 
 
