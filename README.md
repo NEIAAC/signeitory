@@ -10,7 +10,7 @@ We use [PyMu](https://github.com/pymupdf/PyMuPDF) under the hood for the massive
 
 - ### Windows 🪟
 
-  - [Click this link to start the download.](https://github.com/NEIAAC/signeitory/releases/latest/download/Windows.zip)
+  - [Use this link to start the download.](https://github.com/NEIAAC/signeitory/releases/latest/download/Windows.zip)
 
   - Start the `main.exe` file **inside** the extracted folder by _double clicking_ on it, you can create a shortcut with any name you like for this file.
 
