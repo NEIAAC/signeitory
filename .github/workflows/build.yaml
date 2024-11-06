@@ -55,7 +55,7 @@ jobs:
           nuitka-version: main
           script-name: src/main.py
           onefile: false
-          standalone: false
+          standalone: true
           include-data-dir: src/resources=resources
           macos-create-app-bundle: true
           macos-app-icon: src/resources/icons/logo.png
