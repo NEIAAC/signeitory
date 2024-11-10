@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/NEIAAC/signeitory/compare/v1.0.3...v1.0.4) (2024-11-10)
+
+
+### Bug Fixes
+
+* add missing optional dependency ([cc6f9b1](https://github.com/NEIAAC/signeitory/commit/cc6f9b13ac4f70360590597df20e3dcf527e2f11))
+
 ## [1.0.3](https://github.com/NEIAAC/signeitory/compare/v1.0.2...v1.0.3) (2024-11-10)
 
 
