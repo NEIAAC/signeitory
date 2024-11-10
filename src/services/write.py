@@ -1,9 +1,11 @@
 import os
-import pandas as pd
-import pymupdf
 from math import isnan
-from PySide6.QtCore import QThread, Signal
 from typing import Tuple
+
+from PySide6.QtCore import QThread, Signal
+import pandas as pd
+import openpyxl
+import pymupdf
 
 from utils.logger import logger
 
@@ -44,8 +46,14 @@ class WriterThread(QThread):
 
     def readTable(self) -> list[list[str]]:
         if self.tablePath.endswith(".csv"):
+            self.output(
+                f"Using pandas {pd.__version__} to read {self.tablePath}"
+            )
             table = pd.read_csv(self.tablePath, index_col=False)
         elif self.tablePath.endswith(".xlsx"):
+            self.output(
+                f"Using pandas {pd.__version__} and openpyxl {openpyxl.__version__} to read {self.tablePath}"
+            )
             table = pd.read_excel(self.tablePath, index_col=False)
         else:
             raise ValueError("Unsupported file extension")
@@ -63,6 +71,9 @@ class WriterThread(QThread):
 
     def readDocument(self) -> bytes:
         try:
+            self.output(
+                f"Using PyMuPDF {pymupdf.__version__} to read {self.documentPath}"
+            )
             file = pymupdf.open(self.documentPath)
             data = file.convert_to_pdf()
             return data
