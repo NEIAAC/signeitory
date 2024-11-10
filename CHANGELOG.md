@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/NEIAAC/signeitory/compare/v1.0.4...v1.0.5) (2024-11-10)
+
+
+### Bug Fixes
+
+* remove undesired user facing logs ([6df3049](https://github.com/NEIAAC/signeitory/commit/6df3049c8cb3fe0f7522daae69a7bc748af4e565))
+
 ## [1.0.4](https://github.com/NEIAAC/signeitory/compare/v1.0.3...v1.0.4) (2024-11-10)
 
 
