@@ -113,6 +113,12 @@ class WriterThread(QThread):
                     "ERROR",
                 )
                 return
+            if len(rows) < 1:
+                self.output(
+                    "Given table must have at least another row in addition to the headers!",
+                    "ERROR",
+                )
+                return
 
             total: int = 0
             successful: int = 0
