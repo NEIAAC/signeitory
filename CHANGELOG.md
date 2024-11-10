@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/NEIAAC/signeitory/compare/v1.0.2...v1.0.3) (2024-11-10)
+
+
+### Bug Fixes
+
+* improve table size validation ([38141ee](https://github.com/NEIAAC/signeitory/commit/38141ee4bbb8cad96209cd62b89a911dbacddcdd))
+
 ## [1.0.2](https://github.com/NEIAAC/signeitory/compare/v1.0.1...v1.0.2) (2024-11-05)
 
 
