@@ -46,12 +46,12 @@ class WriterThread(QThread):
 
     def readTable(self) -> list[list[str]]:
         if self.tablePath.endswith(".csv"):
-            self.output(
+            logger.info(
                 f"Using pandas {pd.__version__} to read {self.tablePath}"
             )
             table = pd.read_csv(self.tablePath, index_col=False)
         elif self.tablePath.endswith(".xlsx"):
-            self.output(
+            logger.info(
                 f"Using pandas {pd.__version__} and openpyxl {openpyxl.__version__} to read {self.tablePath}"
             )
             table = pd.read_excel(self.tablePath, index_col=False)
@@ -71,7 +71,7 @@ class WriterThread(QThread):
 
     def readDocument(self) -> bytes:
         try:
-            self.output(
+            logger.info(
                 f"Using PyMuPDF {pymupdf.__version__} to read {self.documentPath}"
             )
             file = pymupdf.open(self.documentPath)
