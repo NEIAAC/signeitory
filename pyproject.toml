@@ -15,7 +15,7 @@ dependencies = [
 
 check = ["ruff==0.6.9", "pre-commit==4.0.1"]
 test = ["pytest==8.3.3", "pytest-qt==4.4.0", "pytest-xvfb==3.0.0"]
-build = ["nuitka==2.4.8", "imageio==2.36.0"]
+build = ["nuitka==2.5.9", "imageio==2.36.0"]
 
 [tool.ruff]
 line-length = 80
