@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/NEIAAC/signeitory/compare/v1.2.0...v1.2.1) (2025-01-10)
+
+
+### Bug Fixes
+
+* update imports ([579ec0f](https://github.com/NEIAAC/signeitory/commit/579ec0f4f2274410f7c4ad74ba7f8e31a53e3361))
+
 ## [1.2.0](https://github.com/NEIAAC/signeitory/compare/v1.1.1...v1.2.0) (2025-01-10)
 
 
