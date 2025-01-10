@@ -1,10 +1,9 @@
 import os
-from math import isnan
 from typing import Tuple
 
 from PySide6.QtCore import QThread, Signal
-import pandas as pd
-import openpyxl
+from csv import DictReader, __version__ as csv_version
+from openpyxl import load_workbook, __version__ as openpyxl_version
 import pymupdf
 
 from utils.logger import logger
@@ -47,25 +46,39 @@ class WriterThread(QThread):
     def readTable(self) -> list[list[str]]:
         if self.tablePath.endswith(".csv"):
             logger.info(
-                f"Using pandas {pd.__version__} to read {self.tablePath}"
+                f"Using native CSV {csv_version} module to read {self.tablePath}"
             )
-            table = pd.read_csv(self.tablePath, index_col=False)
+            records = []
+            with open(self.tablePath, mode="r", encoding="utf-8") as csvfile:
+                reader = DictReader(csvfile)
+                headers = reader.fieldnames
+                if not headers:
+                    raise ValueError("CSV file has no headers")
+                for row in reader:
+                    records.append(
+                        {
+                            key: (value if value else "")
+                            for key, value in row.items()
+                        }
+                    )
         elif self.tablePath.endswith(".xlsx"):
             logger.info(
-                f"Using pandas {pd.__version__} and openpyxl {openpyxl.__version__} to read {self.tablePath}"
+                f"Using openpyxl {openpyxl_version} to read {self.tablePath}"
             )
-            table = pd.read_excel(self.tablePath, index_col=False)
+            workbook = load_workbook(filename=self.tablePath, data_only=True)
+            sheet = workbook.active
+            headers = [cell.value for cell in sheet[1] if cell.value]
+            if not headers:
+                raise ValueError("Excel file has no headers")
+            records = []
+            for row in sheet.iter_rows(min_row=2, values_only=True):
+                record = {
+                    headers[i]: (value if value else "")
+                    for i, value in enumerate(row)
+                }
+                records.append(record)
         else:
             raise ValueError("Unsupported file extension")
-
-        records = table.to_dict("records")
-        headers = list(table.columns)
-
-        # Convert NaN, which is parsed in empty cells, to empty string
-        for record in records:
-            for key in record:
-                if type(record[key]) is float and isnan(record[key]):
-                    record[key] = ""
 
         return records, headers
 
