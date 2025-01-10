@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/NEIAAC/signeitory/compare/v1.0.6...v1.1.0) (2025-01-10)
+
+
+### Features
+
+* switch to one file compilation ([cef6118](https://github.com/NEIAAC/signeitory/commit/cef61182704b4b50cd7b81218fbc1155813ee792))
+
 ## [1.0.6](https://github.com/NEIAAC/signeitory/compare/v1.0.5...v1.0.6) (2025-01-10)
 
 
