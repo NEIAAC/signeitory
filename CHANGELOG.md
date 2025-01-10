@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/NEIAAC/signeitory/compare/v1.1.1...v1.2.0) (2025-01-10)
+
+
+### Features
+
+* major build file size reduction ([b6d74c5](https://github.com/NEIAAC/signeitory/commit/b6d74c56d1feef967c4f1cf08c089451df91dc0b))
+
 ## [1.1.1](https://github.com/NEIAAC/signeitory/compare/v1.1.0...v1.1.1) (2025-01-10)
 
 
