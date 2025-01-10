@@ -1,7 +1,7 @@
 [project]
 
 name = "signeitory"
-version = "1.0.5"
+version = "1.0.6"
 dependencies = [
     "pyside6==6.8.0.2",
     "pyside6-fluent-widgets==1.6.6",
