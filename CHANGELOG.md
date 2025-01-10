@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/NEIAAC/signeitory/compare/v1.1.0...v1.1.1) (2025-01-10)
+
+
+### Bug Fixes
+
+* update font names ([0248558](https://github.com/NEIAAC/signeitory/commit/0248558040f374478bac1143d1e0d5590c0eb0d3))
+
 ## [1.1.0](https://github.com/NEIAAC/signeitory/compare/v1.0.6...v1.1.0) (2025-01-10)
 
 
