@@ -54,10 +54,8 @@ jobs:
         with:
           nuitka-version: 2.5.9
           script-name: src/main.py
-          onefile: false
-          standalone: true
+          mode: app
           include-data-dir: src/resources=resources
-          macos-create-app-bundle: true
           macos-app-icon: src/resources/icons/logo.png
           macos-signed-app-name: ${{ env.SIGNATURE }}
           macos-app-name: ${{ env.NAME }}
@@ -105,8 +103,7 @@ jobs:
         with:
           nuitka-version: 2.5.9
           script-name: src/main.py
-          onefile: false
-          standalone: true
+          mode: onefile
           include-data-dir: src/resources=resources
           linux-icon: src/resources/icons/logo.png
           product-version: ${{ inputs.build-version }}
@@ -154,8 +151,7 @@ jobs:
         with:
           nuitka-version: 2.5.9
           script-name: src/main.py
-          onefile: false
-          standalone: true
+          mode: onefile
           include-data-dir: src/resources=resources
           windows-icon-from-ico: src/resources/icons/logo.png
           windows-console-mode: disable
