@@ -4,7 +4,7 @@ from typing import Tuple
 from PySide6.QtCore import QThread, Signal
 from csv import DictReader, __version__ as csv_version
 from openpyxl import load_workbook, __version__ as openpyxl_version
-import pymupdf
+from pymupdf import open as open_media, Point, __version__ as pymupdf_version
 
 from utils.logger import logger
 
@@ -85,9 +85,9 @@ class WriterThread(QThread):
     def readDocument(self) -> bytes:
         try:
             logger.info(
-                f"Using PyMuPDF {pymupdf.__version__} to read {self.documentPath}"
+                f"Using PyMuPDF {pymupdf_version} to read {self.documentPath}"
             )
-            file = pymupdf.open(self.documentPath)
+            file = open_media(self.documentPath)
             data = file.convert_to_pdf()
             return data
         except Exception as e:
@@ -162,7 +162,7 @@ class WriterThread(QThread):
                     )
                     continue
 
-                pdf = pymupdf.open("pdf", data)
+                pdf = open_media("pdf", data)
 
                 try:
                     fontName = os.path.basename(self.fontPath)
@@ -170,7 +170,7 @@ class WriterThread(QThread):
                     page.clean_contents()
                     page.insert_font(fontfile=self.fontPath, fontname=fontName)
                     page.insert_text(
-                        pymupdf.Point(self.coordinateX, self.coordinateY),
+                        Point(self.coordinateX, self.coordinateY),
                         text,
                         fontname=fontName,
                         fontsize=self.fontSize,
