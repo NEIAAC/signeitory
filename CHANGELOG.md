@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.6](https://github.com/NEIAAC/signeitory/compare/v1.0.5...v1.0.6) (2025-01-10)
+
+
+### Bug Fixes
+
+* make ruff version dynamic ([13618ef](https://github.com/NEIAAC/signeitory/commit/13618effb48290ca7cf4aa2909260eab11f48ced))
+* remove combo box limits ([3e5af23](https://github.com/NEIAAC/signeitory/commit/3e5af23c44126ea1a7ec7665bf097bd8ed9f51ba))
+
 ## [1.0.5](https://github.com/NEIAAC/signeitory/compare/v1.0.4...v1.0.5) (2024-11-10)
 
 
