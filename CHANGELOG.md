@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3](https://github.com/NEIAAC/signeitory/compare/v1.2.2...v1.2.3) (2025-01-11)
+
+
+### Bug Fixes
+
+* improve windows compilation memory usage ([20c3357](https://github.com/NEIAAC/signeitory/commit/20c3357980aa0bcb3dc4c48ba7e2c0431b2d4338))
+
 ## [1.2.2](https://github.com/NEIAAC/signeitory/compare/v1.2.1...v1.2.2) (2025-01-10)
 
 
