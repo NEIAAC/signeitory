@@ -103,7 +103,7 @@ jobs:
         with:
           nuitka-version: 2.5.9
           script-name: src/main.py
-          mode: standalone
+          mode: app
           include-data-dir: src/resources=resources
           linux-icon: src/resources/icons/logo.png
           product-version: ${{ inputs.build-version }}
@@ -151,7 +151,7 @@ jobs:
         with:
           nuitka-version: 2.5.9
           script-name: src/main.py
-          mode: standalone
+          mode: app
           include-data-dir: src/resources=resources
           windows-icon-from-ico: src/resources/icons/logo.png
           windows-console-mode: disable
@@ -162,6 +162,7 @@ jobs:
           file-description: ${{ env.NAME }} app, created by ${{ env.AUTHOR }}.
           output-dir: build
           enable-plugins: pyside6
+          low-memory: true
 
       - name: Mutate artifact
         run: mv build/main.dist build/${{ env.NAME }}
