@@ -45,7 +45,7 @@ We use [PyMu](https://github.com/pymupdf/PyMuPDF) under the hood for the massive
 
 - ### Requirements 📋
 
-  - Python 3.12.0+
+  - Python ([version](pyproject.toml#L5))
 
 - ### Setup ⚙️
 
