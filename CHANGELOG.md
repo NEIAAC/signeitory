@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.8](https://github.com/NEIAAC/signeitory/compare/v1.2.7...v1.2.8) (2025-01-20)
+
+
+### Bug Fixes
+
+* increase pymupdf version ([64455f1](https://github.com/NEIAAC/signeitory/commit/64455f1d128e9047d8bc3664e2bb10f373912831))
+
 ## [1.2.7](https://github.com/NEIAAC/signeitory/compare/v1.2.6...v1.2.7) (2025-01-20)
 
 
