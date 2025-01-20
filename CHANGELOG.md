@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.6](https://github.com/NEIAAC/signeitory/compare/v1.2.5...v1.2.6) (2025-01-20)
+
+
+### Bug Fixes
+
+* update python version requirement ([fddb755](https://github.com/NEIAAC/signeitory/commit/fddb7550b096ebaceda436a9ad5a224efbaa50e7))
+
 ## [1.2.5](https://github.com/NEIAAC/signeitory/compare/v1.2.4...v1.2.5) (2025-01-20)
 
 
