@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.10](https://github.com/NEIAAC/signeitory/compare/v1.2.9...v1.2.10) (2025-02-24)
+
+
+### Bug Fixes
+
+* bump nuitka version ([2d4c156](https://github.com/NEIAAC/signeitory/commit/2d4c156488af08cdbf6452a21ca9f30cf4e74357))
+
 ## [1.2.9](https://github.com/NEIAAC/signeitory/compare/v1.2.8...v1.2.9) (2025-02-24)
 
 
