@@ -52,7 +52,7 @@ jobs:
       - name: Build artifact
         uses: Nuitka/Nuitka-Action@3b63d5ce0b2c750b273a1436a458d1262cb4687c
         with:
-          nuitka-version: 2.5.9
+          nuitka-version: 2.6.7
           script-name: src/main.py
           mode: app
           include-data-dir: src/resources=resources
