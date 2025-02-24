@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.9](https://github.com/NEIAAC/signeitory/compare/v1.2.8...v1.2.9) (2025-02-24)
+
+
+### Bug Fixes
+
+* update build instructions ([6761a9c](https://github.com/NEIAAC/signeitory/commit/6761a9cec41edc38aa47b872eb0193c470e0230e))
+
 ## [1.2.8](https://github.com/NEIAAC/signeitory/compare/v1.2.7...v1.2.8) (2025-01-20)
 
 
