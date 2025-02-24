@@ -88,11 +88,4 @@ We use [PyMu](https://github.com/pymupdf/PyMuPDF) under the hood for the massive
     pytest
     ```
 
-  - Nuitka is used for cross-compiling to all supported platforms:
-
-    ```shell
-    pip install .[build]
-    nuitka <options>
-    ```
-
-    See the build [workflow](./.github/workflows/build.yaml) for a list of options used for each platform.
+  - Nuitka is used for cross-compiling to all supported platforms, with most details available in the build [workflow](./.github/workflows/build.yaml).
