@@ -28,7 +28,7 @@ jobs:
     if: ${{ needs.metadata.outputs.release-created}}
     uses: ./.github/workflows/build.yaml
     with:
-      build-version: ${{ needs.metadata.outputs.major }}.${{ needs.metadata.outputs.minor }}.${{ needs.metadata.outputs.patch }}
+      version: ${{ needs.metadata.outputs.major }}.${{ needs.metadata.outputs.minor }}.${{ needs.metadata.outputs.patch }}
   upload:
     needs: [metadata, build]
     runs-on: ubuntu-latest
