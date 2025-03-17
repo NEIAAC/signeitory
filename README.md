@@ -6,7 +6,7 @@ We use [PyMu](https://github.com/pymupdf/PyMuPDF) under the hood for the massive
 
 ## Usage 🚀
 
-- The app is automatically built by a pipeline with every release, so we provide **direct download links** for most operating systems.
+The app is automatically built by a pipeline with every release, so we provide **direct download links** for most operating systems.
 
 - ### Windows 🪟
 
@@ -37,9 +37,9 @@ We use [PyMu](https://github.com/pymupdf/PyMuPDF) under the hood for the massive
 
   - If the app fails to open, go to [this support page](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unknown-developer-mh40616/mac) and select your OS version at the top, then follow the instructions.
 
-- Detailed usage instructions can be found in the [wiki](https://github.com/NEIAAC/signeitory/wiki) page.
+Further detailed usage instructions can be found in the [wiki](https://github.com/NEIAAC/signeitory/wiki) page.
 
-- See the [example](./example/) directory for demo files.
+See the [example](./example/) directory for demo files.
 
 ## Development 🛠️
 
