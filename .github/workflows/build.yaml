@@ -1,16 +1,10 @@
 name: build
 
 on:
-  workflow_dispatch:
-    inputs:
-      build-version:
-        description: "Build version, e.g. 1.0.0, for app metadata."
-        required: true
-        type: string
   workflow_call:
     inputs:
       build-version:
-        description: "Build version, e.g. 1.0.0, for app metadata."
+        description: "Semver build version, for app metadata"
         required: true
         type: string
     outputs:
