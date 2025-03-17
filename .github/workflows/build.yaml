@@ -3,7 +3,7 @@ name: build
 on:
   workflow_call:
     inputs:
-      build-version:
+      version:
         description: "Semver build version, for app metadata"
         required: true
         type: string
