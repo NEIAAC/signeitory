@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.0](https://github.com/NEIAAC/signeitory/compare/v1.2.10...v1.3.0) (2025-05-23)
+
+
+### Features
+
+* Update best practices ([e46aa42](https://github.com/NEIAAC/signeitory/commit/e46aa4233ab131949e8a982d3a731669d75bea22))
+
+
+### Bug Fixes
+
+* Remove broken function calls ([e3dcc8b](https://github.com/NEIAAC/signeitory/commit/e3dcc8b18f030a17c527403c820532033266185a))
+
 ## [1.2.10](https://github.com/NEIAAC/signeitory/compare/v1.2.9...v1.2.10) (2025-02-24)
 
 
