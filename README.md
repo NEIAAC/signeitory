@@ -84,7 +84,7 @@ We use [PyMu](https://github.com/pymupdf/PyMuPDF) under the hood for the massive
     # To automatically lint and format on every commit install the pre-commit hooks:
     pre-commit install
 
-    # When using pre-commit hooks, git commands will fail if any files are checked with errors.
+    # When using pre-commit hooks, git commands may fail if any files are checked with errors.
     # Changed files must be added to the staged area and commited again to apply fixes.
     ```
 
