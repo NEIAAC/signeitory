@@ -25,7 +25,7 @@ from qfluentwidgets import (
 
 from app import App
 from services.write import WriterThread
-from utils import loader
+from utils import file_loader
 from utils.system_tray import SystemTray
 from utils.data_saver import config
 
@@ -39,7 +39,7 @@ class HomePage(QWidget):
 
         self.finishSound = QSoundEffect()
         self.finishSound.setSource(
-            QUrl.fromLocalFile(loader.resources("sounds/success.wav"))
+            QUrl.fromLocalFile(file_loader.loadResource("sounds/success.wav"))
         )
         self.finishSound.setVolume(0.1)
 
@@ -79,10 +79,10 @@ class HomePage(QWidget):
         self.sizeInput.setFixedWidth(200)
         self.sizeInput.setMinimum(1)
         self.sizeInput.setMaximum(9999)
-        self.sizeInput.setValue(config.textSize.get())
+        self.sizeInput.setValue(config.textSize.get())  # type: ignore
         self.sizeInput.setStepType(SpinBox.StepType.AdaptiveDecimalStepType)
         self.sizeInput.textChanged.connect(
-            lambda text: config.textSize.set(float(text))
+            lambda text: config.textSize.set(float(text))  # type: ignore
         )
         self.sizeLayout = QVBoxLayout()
         self.sizeLayout.setSpacing(10)
@@ -110,7 +110,7 @@ class HomePage(QWidget):
 
         self.colorLabel = BodyLabel("<b>COLOR</b>")
         self.colorInput = ColorSettingCard(
-            config.textColor,
+            config.textColor,  # type: ignore
             FluentIcon.PENCIL_INK,
             "Use the box on the right to pick a color!",
         )
@@ -240,7 +240,7 @@ class HomePage(QWidget):
         self.runLogsClearButton.setFixedWidth(100)
         self.runLogsClearButton.clicked.connect(
             lambda: (
-                self.runLogsBox.clear(),
+                self.runLogsBox.clear(),  # type: ignore
                 self.runLogsClearButton.setDisabled(True),
             )
         )

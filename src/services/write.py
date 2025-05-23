@@ -4,7 +4,7 @@ from typing import Tuple
 from PySide6.QtCore import QThread, Signal
 from csv import DictReader, __version__ as csv_version
 from openpyxl import load_workbook, __version__ as openpyxl_version
-from pymupdf import open as open_media, Point, __version__ as pymupdf_version
+from pymupdf import open as open_media, Point, __version__ as pymupdf_version  # type: ignore
 
 from utils.logger import logger
 
@@ -73,7 +73,7 @@ class WriterThread(QThread):
             if not headers:
                 raise ValueError("Excel file has no headers")
             records = []
-            for row in sheet.iter_rows(min_row=2, values_only=True):
+            for row in sheet.iter_rows(min_row=2, values_only=True):  # type: ignore
                 record = {
                     headers[i]: (value if value else "")
                     for i, value in enumerate(row)
@@ -112,7 +112,7 @@ class WriterThread(QThread):
             try:
                 data = self.readDocument()
                 logger.info(
-                    f"Document loaded, extension is \"{self.documentPath.split('.')[-1]}\""
+                    f'Document loaded, extension is "{self.documentPath.split(".")[-1]}"'
                 )
             except Exception as e:
                 self.output(f"Failed to open file: {e}", "ERROR")
