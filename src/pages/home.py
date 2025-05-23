@@ -27,7 +27,7 @@ from app import App
 from services.write import WriterThread
 from utils import loader
 from utils.system_tray import SystemTray
-from utils.config import config
+from utils.data_saver import config
 
 
 class HomePage(QWidget):
@@ -321,13 +321,13 @@ class HomePage(QWidget):
             self.xCoordinateInput.value(),
             self.yCoordinateInput.value(),
             self.sizeInput.value(),
-            self.rotationInput.itemData(self.rotationInput.currentIndex()),
+            self.rotationInput.itemData(self.rotationInput.currentIndex()) or 0,
             self.pageNumberInput.value(),
-            [
+            (
                 self.colorInput.colorPicker.color.redF(),
                 self.colorInput.colorPicker.color.greenF(),
                 self.colorInput.colorPicker.color.blueF(),
-            ],
+            ),
             self.fontFileInput.text(),
             self.documentFileInput.text(),
             self.tableFileInput.text(),

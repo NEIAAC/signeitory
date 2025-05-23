@@ -4,7 +4,7 @@ from PySide6.QtGui import QIcon, QPixmap
 from version import __version__
 from utils import loader
 from utils.logger import logger
-from utils.constants import (
+from config.metadata import (
     EXECUTABLE_NAME,
     AUTHOR_NAME,
     AUTHOR_DOMAIN,

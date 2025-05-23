@@ -43,7 +43,7 @@ class WriterThread(QThread):
         logger.log(level, text)
         self.outputSignal.emit(text, level)
 
-    def readTable(self) -> list[list[str]]:
+    def readTable(self) -> tuple[list[dict[str, str]], list[str]]:
         if self.tablePath.endswith(".csv"):
             logger.info(
                 f"Using native CSV {csv_version} module to read {self.tablePath}"
@@ -67,7 +67,9 @@ class WriterThread(QThread):
             )
             workbook = load_workbook(filename=self.tablePath, data_only=True)
             sheet = workbook.active
-            headers = [cell.value for cell in sheet[1] if cell.value]
+            if not sheet:
+                raise ValueError("Excel file has no sheets")
+            headers = [str(cell.value) for cell in sheet[1] if cell.value]
             if not headers:
                 raise ValueError("Excel file has no headers")
             records = []
@@ -80,7 +82,7 @@ class WriterThread(QThread):
         else:
             raise ValueError("Unsupported file extension")
 
-        return records, headers
+        return records, list(headers)
 
     def readDocument(self) -> bytes:
         try:
@@ -169,7 +171,7 @@ class WriterThread(QThread):
                     page = pdf[self.pageNumber]
                     page.clean_contents()
                     page.insert_font(fontfile=self.fontPath, fontname=fontName)
-                    page.insert_text(
+                    page.insert_text(  # type: ignore
                         Point(self.coordinateX, self.coordinateY),
                         text,
                         fontname=fontName,
