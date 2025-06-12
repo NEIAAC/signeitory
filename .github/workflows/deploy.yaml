@@ -164,8 +164,6 @@ jobs:
           file-description: ${{ needs.prepare.outputs.name }} app, created by ${{ needs.prepare.outputs.author }}.
           output-dir: build
           enable-plugins: pyside6
-          lto: yes
-          low-memory: on
           msvc: latest
 
       - name: Rename build
