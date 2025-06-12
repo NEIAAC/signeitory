@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/NEIAAC/signeitory/compare/v1.3.0...v1.3.1) (2025-06-12)
+
+
+### Bug Fixes
+
+* Remove broken smooth scroll area ([e5c512b](https://github.com/NEIAAC/signeitory/commit/e5c512bef50c4ed083e7616b9abdc346c79df2ae))
+
 ## [1.3.0](https://github.com/NEIAAC/signeitory/compare/v1.2.10...v1.3.0) (2025-05-23)
 
 
