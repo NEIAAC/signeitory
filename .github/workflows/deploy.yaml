@@ -148,6 +148,10 @@ jobs:
       - name: Install dependencies
         run: pip install .[build]
 
+      - name: Prevent realtime monitoring from defender
+        run: Set-MpPreference -DisableRealtimeMonitoring $true
+        shell: powershell
+
       - name: Build binaries
         uses: Nuitka/Nuitka-Action@5752d14b8c7a6d6580896f6c593692cb2bf8e50d # v1.3.0
         with:
