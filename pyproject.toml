@@ -8,7 +8,7 @@ dependencies = [
     "loguru==0.7.3",
     "openpyxl==3.1.5",
     "types-openpyxl==3.1.5.20250602",
-    "pymupdf==1.26.0",
+    "pymupdf==1.26.1",
 ]
 
 [project.optional-dependencies]
