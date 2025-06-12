@@ -164,7 +164,7 @@ jobs:
           file-description: ${{ needs.prepare.outputs.name }} app, created by ${{ needs.prepare.outputs.author }}.
           output-dir: build
           enable-plugins: pyside6
-          msvc: latest
+          mingw64: latest
 
       - name: Rename build
         working-directory: build
