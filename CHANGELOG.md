@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/NEIAAC/signeitory/compare/v1.3.1...v1.3.2) (2025-06-17)
+
+
+### Bug Fixes
+
+* Improve error handling for empty headers in excel files ([2ef3295](https://github.com/NEIAAC/signeitory/commit/2ef329559648c332f670c90d1eb68b90f1e6281b))
+
 ## [1.3.1](https://github.com/NEIAAC/signeitory/compare/v1.3.0...v1.3.1) (2025-06-12)
 
 
