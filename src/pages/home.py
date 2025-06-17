@@ -27,7 +27,6 @@ from qfluentwidgets import (
 from app import App
 from services.write import WriterThread
 from utils import file_loader
-from utils.system_tray import SystemTray
 from utils.data_saver import config
 
 
@@ -348,14 +347,14 @@ class HomePage(QWidget):
         def finished():
             self.runButton.setDisabled(False)
             App.alert(self, 0)
-            if (
-                App.applicationState()
-                == Qt.ApplicationState.ApplicationInactive
-            ):
-                SystemTray().send(
-                    "Text written!",
-                    "Go to the output folder to see the results.",
-                )
+            # if (
+            #     App.applicationState()
+            #     == Qt.ApplicationState.ApplicationInactive
+            # ):
+            #     SystemTray().send(
+            #         "Text written!",
+            #         "Go to the output folder to see the results.",
+            #     )
             self.finishSound.play()
 
         self.worker.finished.connect(finished)

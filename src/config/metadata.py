@@ -16,4 +16,4 @@ DATA_PATH = os.path.join(
     AUTHOR_NAME,
     EXECUTABLE_NAME,
 )
-"""Path to store app data on the system, usually this should not need be changed."""
+"""Path to store app data on the system, usually this should not need to be changed."""

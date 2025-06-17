@@ -160,16 +160,18 @@ class WriterThread(QThread):
             successful: int = 0
             for row in rows:
                 total += 1
+                row_number = total + 1  # Exclude header row
                 text = row[cols[0]].strip()
 
                 if not text:
                     self.output(
-                        f"[{total}] Text to write is empty on this row", "ERROR"
+                        f"[{row_number}] Text to write is empty on this row",
+                        "ERROR",
                     )
                     continue
                 if len(text) > MAX_TEXT_LENGTH:
                     self.output(
-                        f"[{total}] Text to write has more than {MAX_TEXT_LENGTH} characters on this row",
+                        f"[{row_number}] Text to write has more than {MAX_TEXT_LENGTH} characters on this row",
                         "ERROR",
                     )
                     continue
@@ -191,7 +193,8 @@ class WriterThread(QThread):
                     )
                 except Exception as e:
                     self.output(
-                        f"[{total}] Failed to write text '{text}': {e}", "ERROR"
+                        f"[{row_number}] Failed to write text '{text}': {e}",
+                        "ERROR",
                     )
                     continue
 
@@ -207,10 +210,10 @@ class WriterThread(QThread):
                     )
                     pdf.save(outputFile)
                     successful += 1
-                    self.output(f"[{total}] Wrote text '{text}' to file")
+                    self.output(f"[{row_number}] Wrote text '{text}' to file")
                 except Exception as e:
                     self.output(
-                        f"[{total}] Failed to save file for text '{text}': {e}",
+                        f"[{row_number}] Failed to save file for text '{text}': {e}",
                         "ERROR",
                     )
                     continue
