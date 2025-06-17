@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.3](https://github.com/NEIAAC/signeitory/compare/v1.3.2...v1.3.3) (2025-06-17)
+
+
+### Bug Fixes
+
+* Improve row number tracking ([eae42ab](https://github.com/NEIAAC/signeitory/commit/eae42ab6b03caa1c47a17b85d86b056f72612c5b))
+
 ## [1.3.2](https://github.com/NEIAAC/signeitory/compare/v1.3.1...v1.3.2) (2025-06-17)
 
 
