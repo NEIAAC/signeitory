@@ -54,6 +54,7 @@ class WriterThread(QThread):
                 headers = reader.fieldnames
                 if not headers:
                     raise ValueError("CSV file has no headers")
+                logger.info(f"Headers found in CSV: {len(headers)}")
                 for row in reader:
                     records.append(
                         {
@@ -66,17 +67,26 @@ class WriterThread(QThread):
                 f"Using openpyxl {openpyxl_version} to read {self.tablePath}"
             )
             workbook = load_workbook(filename=self.tablePath, data_only=True)
+            logger.info(
+                f"Loaded workbook with {len(workbook.sheetnames)} sheets"
+            )
             sheet = workbook.active
             if not sheet:
                 raise ValueError("Excel file has no sheets")
+            logger.info(
+                f"Active sheet: {sheet.title}, {sheet.max_row} rows, {sheet.max_column} columns"
+            )
             headers = [str(cell.value) for cell in sheet[1] if cell.value]
+            logger.info(f"Headers found: {len(headers)}")
             if not headers:
                 raise ValueError("Excel file has no headers")
             records = []
             for row in sheet.iter_rows(min_row=2, values_only=True):  # type: ignore
+                logger.debug(f"Row data: {row}")
                 record = {
                     headers[i]: (value if value else "")
                     for i, value in enumerate(row)
+                    if i < len(headers)
                 }
                 records.append(record)
         else:
