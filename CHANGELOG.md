@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.5](https://github.com/NEIAAC/signeitory/compare/v1.3.4...v1.3.5) (2025-06-25)
+
+
+### Bug Fixes
+
+* Improve error messages ([eb63c9a](https://github.com/NEIAAC/signeitory/commit/eb63c9ac59a424b83dceceec8315ca59022b6e04))
+
 ## [1.3.4](https://github.com/NEIAAC/signeitory/compare/v1.3.3...v1.3.4) (2025-06-25)
 
 
