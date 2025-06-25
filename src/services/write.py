@@ -4,9 +4,9 @@ from typing import Tuple
 from PySide6.QtCore import QThread, Signal
 from csv import DictReader, __version__ as csv_version
 from openpyxl import load_workbook, __version__ as openpyxl_version
-from pymupdf import open as open_media, Point, __version__ as pymupdf_version  # type: ignore
+from pymupdf import open as open_media, Point, __version__ as pymupdf_version
 
-from utils.logger import logger
+from utils.logger import LogLevel, logger
 
 MAX_TEXT_LENGTH = 200
 
@@ -39,9 +39,9 @@ class WriterThread(QThread):
         self.rotation = rotation
         self.pageNumber = pageNumber
 
-    def output(self, text: str, level: str = "INFO"):
-        logger.log(level, text)
-        self.outputSignal.emit(text, level)
+    def output(self, text: str, level: LogLevel = LogLevel.INFO):
+        logger.log(level.value, text)
+        self.outputSignal.emit(text, level.value)
 
     def readTable(self) -> tuple[list[dict[str, str]], list[str]]:
         if self.tablePath.endswith(".csv"):
@@ -81,7 +81,7 @@ class WriterThread(QThread):
             if not headers:
                 raise ValueError("Excel file has no headers")
             records = []
-            for row in sheet.iter_rows(min_row=2, values_only=True):  # type: ignore
+            for row in sheet.iter_rows(min_row=2, values_only=True):
                 logger.debug(f"Row data: {row}")
                 record = {
                     headers[i]: (value if value else "")
@@ -103,19 +103,20 @@ class WriterThread(QThread):
             data = file.convert_to_pdf()
             return data
         except Exception as e:
-            self.output(f"Failed to read file: {e}", "ERROR")
+            self.output(f"Failed to read file: {e}", LogLevel.ERROR)
             raise
 
     def run(self):
-        inputs = self.__dict__.copy()
-        logger.info(f"Starting writer thread with input parameters: {inputs}")
-        self.output("...")
-
-        with logger.catch():
+        try:
+            inputs = self.__dict__.copy()
+            logger.info(
+                f"Starting writer thread with input parameters: {inputs}"
+            )
+            self.output("...")
             if not os.path.isdir(self.outputPath):
                 self.output(
                     f"Output directory {self.outputPath} not found or is not a directory",
-                    "ERROR",
+                    LogLevel.ERROR,
                 )
                 return
 
@@ -125,13 +126,13 @@ class WriterThread(QThread):
                     f'Document loaded, extension is "{self.documentPath.split(".")[-1]}"'
                 )
             except Exception as e:
-                self.output(f"Failed to open file: {e}", "ERROR")
+                self.output(f"Failed to open file: {e}", LogLevel.ERROR)
                 return
 
             try:
                 rows, cols = self.readTable()
             except Exception as e:
-                self.output(f"Failed to load table: {e}", "ERROR")
+                self.output(f"Failed to load table: {e}", LogLevel.ERROR)
                 return
 
             logger.info(
@@ -141,18 +142,18 @@ class WriterThread(QThread):
             logger.info(f"Table rows read: {rows}")
 
             if not rows or not cols:
-                self.output("Given table is empty", "ERROR")
+                self.output("Given table is empty", LogLevel.ERROR)
                 return
             if len(cols) != 1:
                 self.output(
                     "Given table must have exactly one column with the text to write on each row",
-                    "ERROR",
+                    LogLevel.ERROR,
                 )
                 return
             if len(rows) < 1:
                 self.output(
                     "Given table must have at least another row in addition to the headers!",
-                    "ERROR",
+                    LogLevel.ERROR,
                 )
                 return
 
@@ -165,14 +166,14 @@ class WriterThread(QThread):
 
                 if not text:
                     self.output(
-                        f"[{row_number}] Text to write is empty on this row",
-                        "ERROR",
+                        f"[{row_number}] Text to write is empty on this row, skipping",
+                        LogLevel.WARNING,
                     )
                     continue
                 if len(text) > MAX_TEXT_LENGTH:
                     self.output(
-                        f"[{row_number}] Text to write has more than {MAX_TEXT_LENGTH} characters on this row",
-                        "ERROR",
+                        f"[{row_number}] Text to write has more than {MAX_TEXT_LENGTH} characters on this row, skipping",
+                        LogLevel.WARNING,
                     )
                     continue
 
@@ -194,7 +195,7 @@ class WriterThread(QThread):
                 except Exception as e:
                     self.output(
                         f"[{row_number}] Failed to write text '{text}': {e}",
-                        "ERROR",
+                        LogLevel.ERROR,
                     )
                     continue
 
@@ -214,8 +215,13 @@ class WriterThread(QThread):
                 except Exception as e:
                     self.output(
                         f"[{row_number}] Failed to save file for text '{text}': {e}",
-                        "ERROR",
+                        LogLevel.ERROR,
                     )
                     continue
 
             self.output(f"Successfully wrote {successful} out of {total} files")
+        except Exception as error:
+            self.output(
+                f"An unexpected error occurred: {f'{error}'.split(';')[0][9:]}",
+                LogLevel.ERROR,
+            )
