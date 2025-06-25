@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.4](https://github.com/NEIAAC/signeitory/compare/v1.3.3...v1.3.4) (2025-06-25)
+
+
+### Documentation
+
+* Add commas to example csv ([81651b4](https://github.com/NEIAAC/signeitory/commit/81651b483b48cc152e274cbb4a229faea351f04c))
+* Update error instructions ([b816c9f](https://github.com/NEIAAC/signeitory/commit/b816c9f2d9079e5a2e67ebe220d2691b46bea98e))
+
 ## [1.3.3](https://github.com/NEIAAC/signeitory/compare/v1.3.2...v1.3.3) (2025-06-17)
 
 
