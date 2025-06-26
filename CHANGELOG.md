@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/NEIAAC/signeitory/compare/v1.3.5...v1.4.0) (2025-06-26)
+
+
+### Features
+
+* Add debug flag ([2a77bf9](https://github.com/NEIAAC/signeitory/commit/2a77bf9064df4bec67472e40ed6019277787644a))
+
 ## [1.3.5](https://github.com/NEIAAC/signeitory/compare/v1.3.4...v1.3.5) (2025-06-25)
 
 
