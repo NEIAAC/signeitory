@@ -1,6 +1,8 @@
 import os
 import sys
 
+from app import App
+
 old = sys.stdout
 try:
     sys.stdout = open(os.devnull, "w")
@@ -25,6 +27,8 @@ class Window(FluentWindow):
     def __init__(self):
         super().__init__()
 
+        App.alert(self, 0)
+
         self.setMicaEffectEnabled(False)
         self.resize(QSize(config.width.get(), config.height.get()))
         self.move(QPoint(config.x.get(), config.y.get()))
@@ -39,6 +43,7 @@ class Window(FluentWindow):
         self.show()
 
         self.addSubInterface(HomePage(), FluentIcon.HOME, "Home")
+
         self.addSubInterface(
             SettingsPage(),
             FluentIcon.SETTING,
@@ -49,7 +54,7 @@ class Window(FluentWindow):
         self.splashScreen.finish()
 
     def closeEvent(self, e):
-        """Saves the current window geometry before closing."""
+        """Saves the current window geometry and other settings before closing."""
         config.width.set(self.width())
         config.height.set(self.height())
         config.x.set(self.x())

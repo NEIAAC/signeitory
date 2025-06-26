@@ -7,7 +7,7 @@ EXECUTABLE_NAME = "Signeitory"
 AUTHOR_NAME = "NEIAAC"
 AUTHOR_DOMAIN = "neiaac.com"
 
-LOGO_PATH = "icons/logo.png"
+LOGO_PATH = os.path.join("images", "logo.png")
 
 DATA_PATH = os.path.join(
     QStandardPaths.writableLocation(
