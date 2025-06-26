@@ -2,7 +2,7 @@
 
 With Signeitory it's as simple as possible to write text into a variety of file formats in bulk. The main purpose of the script is to generate massive amounts of custom certificates deriving from a common base.
 
-We use [PyMu](https://github.com/pymupdf/PyMuPDF) under the hood for the massive amount of supported writeable file formats it allows, you can find the full feature list [here](https://pymupdf.readthedocs.io/en/latest/about.html).
+We use [PyMuPDF](https://github.com/pymupdf/PyMuPDF) under the hood for the massive amount of [supported file formats](https://pymupdf.readthedocs.io/en/latest/about.html).
 
 ## Usage 🚀
 
@@ -16,7 +16,8 @@ We use [PyMu](https://github.com/pymupdf/PyMuPDF) under the hood for the massive
 
 - ### Windows 🪟
 
-  - [Use this link to start the download.](https://github.com/NEIAAC/signeitory/releases/latest/download/Windows.zip)
+  - ~~[Use this link to start the download.](https://github.com/NEIAAC/signeitory/releases/latest/download/Windows.zip)~~ The Windows download
+  is currently unavailable due to compilation issues with the document editing library _(PyMuPDF)_ on this OS. Until the compiler we use _(Nuitka)_ improves support for this library, there isn't much we can do. Windows users can still run the app with a [developer setup](#development-%EF%B8%8F).
 
   - Start the `exe` file **inside** the extracted folder by _double clicking_ on it, you can create a shortcut with any name you like for this file.
 
