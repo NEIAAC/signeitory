@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/NEIAAC/signeitory/compare/v1.4.0...v1.4.1) (2025-06-27)
+
+
+### Bug Fixes
+
+* Shrink color box size ([61aee11](https://github.com/NEIAAC/signeitory/commit/61aee11b72738160e3b444363c6dd1bbb0181a53))
+
 ## [1.4.0](https://github.com/NEIAAC/signeitory/compare/v1.3.5...v1.4.0) (2025-06-26)
 
 
