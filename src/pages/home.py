@@ -85,10 +85,10 @@ class HomePage(QWidget):
         self.sizeInput.setFixedWidth(200)
         self.sizeInput.setMinimum(1)
         self.sizeInput.setMaximum(9999)
-        self.sizeInput.setValue(config.textSize.get())  # type: ignore
+        self.sizeInput.setValue(config.textSize.get())
         self.sizeInput.setStepType(SpinBox.StepType.AdaptiveDecimalStepType)
         self.sizeInput.textChanged.connect(
-            lambda text: config.textSize.set(float(text))  # type: ignore
+            lambda text: config.textSize.set(float(text))
         )
         self.sizeLayout = QVBoxLayout()
         self.sizeLayout.setSpacing(10)
@@ -116,11 +116,11 @@ class HomePage(QWidget):
 
         self.colorLabel = BodyLabel("<b>COLOR</b>")
         self.colorInput = ColorSettingCard(
-            config.textColor,  # type: ignore
+            config.textColor,
             FluentIcon.PENCIL_INK,
-            "Use the box on the right to pick a color!",
+            "",
         )
-        self.colorInput.setFixedWidth(425)
+        self.colorInput.setFixedWidth(180)
         self.colorLayout = QVBoxLayout()
         self.colorLayout.setSpacing(10)
         self.colorLayout.addWidget(self.colorLabel)
